@@ -77,7 +77,7 @@ submit.onclick = function() {
     }
     // count
     // clean data
-    if(title.value != '' && price.value != '' && category.value != '' && newPro.count < 100 && newPro.count < 100 ) {
+    if(title.value != '' && price.value != '' && category.value != '' && newPro.count <= 100000 && newPro.count <= 100000 ) {
         //   و عدد المنتجات اقل من 100اذا كانت جميع الحقول المطلوبة غير فارغة 
         // If all required fields are not empty and count is less than 100
     if (mood === "create") { 
@@ -320,8 +320,25 @@ if (searchMood === 'title') {
 
 }
 
-hello.onclick =function(){
-    body.classList.toggle("theme")
+if (localStorage.getItem("theme") === "light") {
+    body.classList.add("theme");
+    hello.innerHTML = "🌞";
+} else {
+    hello.innerHTML = "🌙";
+}
+
+hello.onclick = function () {
+    body.classList.toggle("theme");
+
+    if (body.classList.contains("theme")) {
+        // وضع النهار
+        localStorage.setItem("theme", "light");
+        hello.innerHTML = "🌞";
+    } else {
+        // وضع الليل
+        localStorage.setItem("theme", "dark");
+        hello.innerHTML = "🌙";
+    }
 }
 
 
